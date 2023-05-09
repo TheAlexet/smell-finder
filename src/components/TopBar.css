@@ -1,0 +1,68 @@
+.top_bar_background {
+  grid-area: bar;
+  background-color: #15202b;
+}
+
+.top_bar {
+  background-color: #2a99ed;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 8% 92%;
+}
+
+.top_bar_logo_container {
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top_bar_logo {
+  position: absolute;
+  width: 80%;
+  max-width: 40px; 
+  height: auto;
+}
+
+.top_bar_menu {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 12.5%);
+}
+
+.top_bar_button {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #2a99ed;
+}
+
+.top_bar_button_pressed {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5cadeb;
+}
+
+.top_bar_button_text {
+  font-size:calc(10px + 2vw);
+  font-family:'Lucida Sans';
+  color: #ffffff;
+  position: absolute;
+
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}

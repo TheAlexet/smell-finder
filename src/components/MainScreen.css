@@ -1,0 +1,122 @@
+.main_screen {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 70% 30%;
+}
+
+.main_screen_top {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.main_screen_top_half {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_screen_top_half_border {
+  position: relative;
+  height: 80%;
+  width: 80%;
+  display: grid;
+  grid-template-rows: 20% 40% 40%;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #2a99ed;
+}
+
+.main_screen_top_half_content {
+  position: relative;
+  height: 90%;
+  width: 90%;
+  left: 5%;
+  top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_screen_top_half_content_button {
+  position: relative;
+  height: 90%;
+  width: 90%;
+  left: 5%;
+  top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_screen_bottom {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.load_csv_button {
+  position: relative;
+  height: 40%;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size:calc(5px + 1vw);
+  font-family:'Lucida Sans';
+  color: #ffffff;
+  position: absolute;
+  background-color:#2a99ed;
+  border-radius: 10px;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+.analyze_csv_button {
+  position: relative;
+  height: 40%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #2a99ed;
+  border-radius: 10px;
+}
+
+.main_text {
+  font-size:calc(10px + 2vw);
+  font-family:'Lucida Sans';
+  color: #ffffff;
+  position: absolute;
+
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+.main_description {
+  font-size:calc(5px + 1vw);
+  font-family:'Lucida Sans';
+  color: #ffffff;
+  position: absolute;
+
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
