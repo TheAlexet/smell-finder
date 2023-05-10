@@ -21,17 +21,24 @@ const TopBar = () => {
         
 
         <div className = "top_bar_menu">
-          <div className = {screen === "main" ? "top_bar_button_pressed" : "top_bar_button"}
-               onClick={() => changeScreen("main")}>
+          <div className = {screen === "home" ? "top_bar_button_pressed" : "top_bar_button"}
+               onClick={() => changeScreen("home")}>
             <div className = "top_bar_button_text">
-              Main
+              Home
             </div>
           </div>
 
-          <div className = {screen === "about" ? "top_bar_button_pressed" : "top_bar_button"}
-               onClick={() => changeScreen("about")}>
+          <div className = {screen === "instructions" ? "top_bar_button_pressed" : "top_bar_button"}
+               onClick={() => changeScreen("instructions")}>
             <div className = "top_bar_button_text">
-              About
+              Instructions
+            </div>
+          </div>
+
+          <div className = {screen === "analysis" ? "top_bar_button_pressed" : "top_bar_button"}
+               onClick={() => changeScreen("analysis")}>
+            <div className = "top_bar_button_text">
+              Analysis
             </div>
           </div>
         </div>

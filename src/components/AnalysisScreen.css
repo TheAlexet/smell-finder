@@ -1,4 +1,4 @@
-.main_screen {
+.analysis_screen {
   position: relative;
   height: 100%;
   width: 100%;
@@ -6,7 +6,7 @@
   grid-template-rows: 70% 30%;
 }
 
-.main_screen_top {
+.analysis_screen_top {
   position: relative;
   height: 100%;
   width: 100%;
@@ -14,7 +14,7 @@
   grid-template-columns: repeat(2, 50%);
 }
 
-.main_screen_top_half {
+.analysis_screen_top_half {
   position: relative;
   height: 100%;
   width: 100%;
@@ -23,18 +23,18 @@
   align-items: center;
 }
 
-.main_screen_top_half_border {
+.analysis_screen_top_half_border {
   position: relative;
   height: 80%;
   width: 80%;
   display: grid;
-  grid-template-rows: 20% 40% 40%;
+  grid-template-rows: 20% 50% 30%;
   border-radius: 10px;
   border-style: solid;
   border-color: #2a99ed;
 }
 
-.main_screen_top_half_content {
+.analysis_screen_top_half_content {
   position: relative;
   height: 90%;
   width: 90%;
@@ -45,18 +45,34 @@
   align-items: center;
 }
 
-.main_screen_top_half_content_button {
+.analysis_screen_top_half_content_bottom {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.analysis_screen_top_half_content_button {
+  position: relative;
+  height: 90%;
+  width: 90%;
+  left: 5%;
+  top: 5%;
+}
+
+.analysis_screen_top_half_content_file {
   position: relative;
   height: 90%;
   width: 90%;
   left: 5%;
   top: 5%;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
 }
 
-.main_screen_bottom {
+.analysis_screen_bottom {
   position: relative;
   height: 100%;
   width: 100%;
@@ -67,8 +83,10 @@
 
 .load_csv_button {
   position: relative;
-  height: 40%;
-  width: 40%;
+  height: 60%;
+  width: 60%;
+  top: 20%;
+  left: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,7 +115,7 @@
   border-radius: 10px;
 }
 
-.main_text {
+.analysis_text {
   font-size:calc(10px + 2vw);
   font-family:'Lucida Sans';
   color: #ffffff;
@@ -109,7 +127,7 @@
   user-select: none; /* Standard */
 }
 
-.main_description {
+.analysis_description {
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
   color: #ffffff;

@@ -1,10 +1,10 @@
-.about_screen {
+.home_screen {
   position: relative;
   height: 100%;
   width: 100%;
 }
 
-.about_screen_text_container {
+.home_screen_text_container {
   position: relative;
   height: 90%;
   width: 90%;
@@ -12,7 +12,7 @@
   left: 5%;
 }
 
-.about_screen_text {
+.home_screen_text {
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
   color: #ffffff;

@@ -1,5 +1,5 @@
 {
-  "name": "smell-finder",
+  "name": "smell-flaky-analyzer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

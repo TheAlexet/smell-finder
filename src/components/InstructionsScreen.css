@@ -1,0 +1,24 @@
+.instructions_screen {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.instructions_screen_text_container {
+  position: relative;
+  height: 90%;
+  width: 90%;
+  top: 5%;
+  left: 5%;
+}
+
+.instructions_screen_text {
+  font-size:calc(5px + 1vw);
+  font-family:'Lucida Sans';
+  color: #ffffff;
+
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}

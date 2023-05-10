@@ -1,7 +1,8 @@
 import './Screens.css';
 import { useSelector } from 'react-redux';
-import MainScreen from './MainScreen.js'
-import AboutScreen from './AboutScreen.js'
+import HomeScreen from './HomeScreen.js'
+import InstructionsScreen from './InstructionsScreen.js'
+import AnalysisScreen from './AnalysisScreen.js'
 
 const Screens = () => {
 
@@ -10,8 +11,9 @@ const Screens = () => {
 
   return (
     <div className="screens">
-      {screen === "main" && <MainScreen/>}
-      {screen === "about" && <AboutScreen/>}
+      {screen === "about" && <HomeScreen/>}
+      {screen === "instructions" && <InstructionsScreen/>}
+      {screen === "analysis" && <AnalysisScreen/>} 
     </div>
   );
 }

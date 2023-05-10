@@ -1,16 +1,20 @@
 const initialState = {
-    screen: "main",
-    menuOpen: false
+    screen: "home",
+    csvSmells: null,
+    csvFlaky: null
 }
 
 const mainReducer = (state = initialState, action) => {
     switch(action.type) {
 
         case 'main/updateScreen':
-            return {...state, screen: action.payload, menuOpen: false}
+            return {...state, screen: action.payload}
 
-        case 'main/toggleMenu':
-            return {...state, menuOpen: !state.menuOpen}
+        case 'main/updateCsvSmells':
+            return {...state, csvSmells: action.payload}
+
+        case 'main/updateCsvFlaky':
+            return {...state, csvFlaky: action.payload}
 
         default:
             return state
