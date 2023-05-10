@@ -11,7 +11,7 @@ const Screens = () => {
 
   return (
     <div className="screens">
-      {screen === "about" && <HomeScreen/>}
+      {screen === "home" && <HomeScreen/>}
       {screen === "instructions" && <InstructionsScreen/>}
       {screen === "analysis" && <AnalysisScreen/>} 
     </div>
