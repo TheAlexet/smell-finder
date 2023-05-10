@@ -1,7 +1,8 @@
 const initialState = {
     screen: "home",
     csvSmells: null,
-    csvFlaky: null
+    csvFlaky: null,
+    csvFlakyDownloaded: null
 }
 
 const mainReducer = (state = initialState, action) => {
@@ -15,6 +16,9 @@ const mainReducer = (state = initialState, action) => {
 
         case 'main/updateCsvFlaky':
             return {...state, csvFlaky: action.payload}
+
+        case 'main/updateCsvFlakyDownloaded':
+            return {...state, csvFlakyDownloaded: action.payload}
 
         default:
             return state

@@ -6,8 +6,8 @@ const AnalysisScreen = () => {
 
   const state = useSelector(state => state.main)
   const dispatch = useDispatch()
-  const [csvSmellsName, setCsvSmellsName] = useState("File not selected");
-  const [csvFlakyName, setCsvFlakyName] = useState("File not selected");
+  const [csvSmellsName, setCsvSmellsName] = useState(state.csvSmells !== null ? state.csvSmells.name : "File not selected");
+  const [csvFlakyName, setCsvFlakyName] = useState(state.csvFlaky !== null ? state.csvFlaky.name : "File not selected");
 
   const loadSmellCsv = (event) => {
     if (event.target.files.length) {
