@@ -2,6 +2,7 @@ import './InstructionsScreen.css';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import Papa from 'papaparse';
+const { ipcRenderer } = window.require('electron');
 
 const InstructionsScreen = () => {
 
@@ -16,7 +17,7 @@ const InstructionsScreen = () => {
     }
   };
 
-  const parseFlakyDownloaded = () => {
+  /*const parseFlakyDownloaded = () => {
     if (state.csvFlakyDownloaded !== null) {
       let parsedValues = []
       let parsedRows = ["Project name", "Test method name" , "Is flaky"]
@@ -34,13 +35,20 @@ const InstructionsScreen = () => {
           const blob = new Blob([parsedCsv]);
           const a = document.createElement('a');
           a.href = URL.createObjectURL(blob, { type: 'text/plain' });
-          a.download = 'CSV Export File';
+          a.download = 'test_results_parsed';
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
         },
       })
-      
+    }
+  };*/
+
+  const parseFlakyDownloaded = () => {
+    console.log(state.csvFlakyDownloaded)
+    if (state.csvFlakyDownloaded !== null) {
+      const csvPath = "./src/csv/" + csvFlakyDownloadedName
+      ipcRenderer.send('run-script', ["get_test_flakiness.py", csvPath])
     }
   };
 
@@ -100,10 +108,10 @@ const InstructionsScreen = () => {
             The downloaded file will have to be parsed for matching the desired input format.
           </div>
           <div className="instructions_screen_text">
-            To do so, select the csv and click on the parse button.
+            To do so, put the file in the csv folder, upload it and click on the parse button.
           </div>
           <div className="instructions_screen_text">
-            The resulting file, test_results_parsed, will be saved in the results folder.
+            The resulting file, test_results_parsed, will be saved in the csv folder.
           </div>
           <div className="instructions_screen_text">
             Step 2 can be skipped if you already provide a valid csv.

@@ -43,7 +43,7 @@ const AnalysisScreen = () => {
 
             <div className="analysis_screen_top_half_content">
               <div className="analysis_description">
-                Load a valid csv containing the test smell analysis results.
+                Load a valid csv containing the test smell analysis results. It has to be located in the csv folder of this project.
               </div>
             </div>
 
@@ -84,7 +84,7 @@ const AnalysisScreen = () => {
 
             <div className="analysis_screen_top_half_content">
               <div className="analysis_description">
-                Load a valid csv containing the flaky tests analysis results.
+                Load a valid csv containing the flaky tests analysis results. It has to be located in the csv folder of this project.
               </div>
             </div>
 
