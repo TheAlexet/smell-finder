@@ -9,6 +9,7 @@ const InstructionsScreen = () => {
   const state = useSelector(state => state.main)
   const dispatch = useDispatch()
   const [csvFlakyDownloadedName, setCsvFlakyDownloadedName] = useState(state.csvFlakyDownloaded !== null ? state.csvFlakyDownloaded.name : "File not selected");
+  const [waitingScreenOn, setWaitingScreenOn] = useState(false);
 
   const loadFlakyDownloadedCsv = (event) => {
     if (event.target.files.length) {
@@ -57,6 +58,7 @@ const InstructionsScreen = () => {
 
   const runJNose = async() => {
     ipcRenderer.send('run-script', ["run_jnose.py"])
+    //enableWaitingScreen(5000)
     await timeout(5000);
     window.open("http://127.0.0.1:8080", "_blank", "noreferrer")
   };
@@ -131,7 +133,7 @@ const InstructionsScreen = () => {
         <div className="instructions_screen_box_2_left_separator">
           <div className = "instructions_screen_right_container">
             <div className = "instructions_screen_text">
-              {csvFlakyDownloadedName}
+              {csvFlakyDownloadedName.length > 25 ? csvFlakyDownloadedName.substring(0, 24) + "..." : csvFlakyDownloadedName}
             </div>
           </div>
           <div className="instructions_screen_content_button">
@@ -175,16 +177,22 @@ const InstructionsScreen = () => {
       <div className="instructions_screen_left_container">
         <div>
           <div className="instructions_screen_text">
-            Obtain a csv file containing the test smells. To do that, the JNose tool will be used.
+            Obtain a csv file containing the test smells with the JNose tool.
           </div>
           <div className="instructions_screen_text">
             Run the tool with the following button and follow these steps:
           </div>
           <div className="instructions_screen_text">
-            1. 
+            1. Go to the "Projects" tab and clone a project by providing a github url.
           </div>
           <div className="instructions_screen_text">
-            2. 
+            2. Go to the "By TestSmells" tab and analyze the project you want.
+          </div>
+          <div className="instructions_screen_text">
+            3. When the bar reaches 100% click on the yellow button next to it.
+          </div>
+          <div className="instructions_screen_text">
+            4. Click on "Export CSV" and save the file in the csv folder of the project.
           </div>
         </div>
       </div>
@@ -199,11 +207,20 @@ const InstructionsScreen = () => {
     )
   }
 
+  const renderWaitingScreen = () => {
+    return(
+      <div className = "instructions_waiting_screen">
+        
+      </div>
+    )
+  }
+
   return (
     <div className="instructions_screen">
       {renderPage1()}
       {renderPage2()}
       {renderPage3()}
+      {waitingScreenOn && renderWaitingScreen()}
     </div>
   );
 }
