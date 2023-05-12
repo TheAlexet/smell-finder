@@ -44,12 +44,21 @@ const InstructionsScreen = () => {
     }
   };*/
 
+  function timeout(delay) {
+    return new Promise( res => setTimeout(res, delay) );
+  }
+
   const parseFlakyDownloaded = () => {
-    console.log(state.csvFlakyDownloaded)
     if (state.csvFlakyDownloaded !== null) {
       const csvPath = "./src/csv/" + csvFlakyDownloadedName
       ipcRenderer.send('run-script', ["get_test_flakiness.py", csvPath])
     }
+  };
+
+  const runJNose = async() => {
+    ipcRenderer.send('run-script', ["run_jnose.py"])
+    await timeout(5000);
+    window.open("http://127.0.0.1:8080", "_blank", "noreferrer")
   };
 
   const renderPage1 = () => {
@@ -114,7 +123,7 @@ const InstructionsScreen = () => {
             The resulting file, test_results_parsed, will be saved in the csv folder.
           </div>
           <div className="instructions_screen_text">
-            Step 2 can be skipped if you already provide a valid csv.
+            Step 2 can be skipped if you already have a valid csv.
           </div>
         </div>
       </div>
@@ -155,10 +164,46 @@ const InstructionsScreen = () => {
     )
   }
 
+  const renderPage3 = () => {
+    return(
+      <div className="instructions_screen_box_3">
+      <div className="instructions_screen_title_container">
+          <div className="instructions_screen_title">
+            Step 3:
+          </div>
+      </div>
+      <div className="instructions_screen_left_container">
+        <div>
+          <div className="instructions_screen_text">
+            Obtain a csv file containing the test smells. To do that, the JNose tool will be used.
+          </div>
+          <div className="instructions_screen_text">
+            Run the tool with the following button and follow these steps:
+          </div>
+          <div className="instructions_screen_text">
+            1. 
+          </div>
+          <div className="instructions_screen_text">
+            2. 
+          </div>
+        </div>
+      </div>
+      <div className="instructions_screen_flex_container">
+        <div className = "instructions_screen_button_4" onClick = {() => runJNose()}>
+          <div className="instructions_screen_text">
+            Run JNose
+          </div>
+        </div>
+      </div>
+    </div>
+    )
+  }
+
   return (
     <div className="instructions_screen">
       {renderPage1()}
       {renderPage2()}
+      {renderPage3()}
     </div>
   );
 }
