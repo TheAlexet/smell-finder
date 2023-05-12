@@ -127,6 +127,18 @@
   user-select: none; /* Standard */
 }
 
+.analysis_text_small {
+  font-size:calc(5px + 1vw);
+  font-family:'Lucida Sans';
+  color: #ffffff;
+  position: absolute;
+
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
 .analysis_description {
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
@@ -137,4 +149,30 @@
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
+}
+
+.analysis_waiting_screen {
+  position: fixed;
+  height: 60%;
+  width: 30%;
+  top: 20%;
+  left: 35%;
+  background-color: #15202b;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: 20% 20% 60%;
+  border-style: solid;
+  border-color: #2a99ed;
+}
+
+.analysis_screen_flex_container {
+  position: relative;
+  height: 90%;
+  width: 90%;
+  top: 5%;
+  left: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

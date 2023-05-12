@@ -249,12 +249,14 @@
 
 .instructions_waiting_screen {
   position: fixed;
-  height: 50%;
-  width: 35%;
-  top: 25%;
-  left: 32.5%;
-  display: grid;
-  grid-template-rows: repeat(3, 100%);
-  background-color: red;
+  height: 60%;
+  width: 30%;
+  top: 20%;
+  left: 35%;
+  background-color: #15202b;
   border-radius: 10px;
+  display: grid;
+  grid-template-rows: 30% 70%;
+  border-style: solid;
+  border-color: #2a99ed;
 }

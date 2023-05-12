@@ -1,6 +1,7 @@
 import './InstructionsScreen.css';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState } from 'react';
+import loadingGif from '../assets/loading.gif';
 import Papa from 'papaparse';
 const { ipcRenderer } = window.require('electron');
 
@@ -45,10 +46,6 @@ const InstructionsScreen = () => {
     }
   };*/
 
-  function timeout(delay) {
-    return new Promise( res => setTimeout(res, delay) );
-  }
-
   const parseFlakyDownloaded = () => {
     if (state.csvFlakyDownloaded !== null) {
       const csvPath = "./src/csv/" + csvFlakyDownloadedName
@@ -58,9 +55,11 @@ const InstructionsScreen = () => {
 
   const runJNose = async() => {
     ipcRenderer.send('run-script', ["run_jnose.py"])
-    //enableWaitingScreen(5000)
-    await timeout(5000);
-    window.open("http://127.0.0.1:8080", "_blank", "noreferrer")
+    setWaitingScreenOn(true);
+    setTimeout(function(){
+      setWaitingScreenOn(false);
+      window.open("http://127.0.0.1:8080", "_blank", "noreferrer")
+    }.bind(this),5000);
   };
 
   const renderPage1 = () => {
@@ -210,7 +209,14 @@ const InstructionsScreen = () => {
   const renderWaitingScreen = () => {
     return(
       <div className = "instructions_waiting_screen">
-        
+        <div className="instructions_screen_flex_container">
+          <div className="instructions_screen_text">
+            Loading JNose
+          </div>
+        </div>
+        <div className="home_screen_flex_container">
+          <img className = "home_screen_icon" alt = "Loading" src = {loadingGif}/>
+        </div>
       </div>
     )
   }

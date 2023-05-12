@@ -36,7 +36,7 @@ def combine_lists(smell_file, flaky_list_file):
 
 #The combined list is saved into a new csv file
 def save_combined_list(parsed_file):
-    with open("./src/csv/jnose_results.csv", "w", newline = '') as csv_file:
+    with open("./src/csv/sfa_results.csv", "w", newline = '') as csv_file:
         writer = csv.writer(csv_file)
         writer.writerows(parsed_file)
         csv_file.close()

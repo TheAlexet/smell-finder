@@ -1,6 +1,7 @@
   import './AnalysisScreen.css';
   import { useSelector, useDispatch } from 'react-redux';
   import React, { useState } from 'react';
+  import loadingGif from '../assets/loading.gif';
   const { ipcRenderer } = window.require('electron');
   
   const AnalysisScreen = () => {
@@ -9,6 +10,7 @@
     const dispatch = useDispatch()
     const [csvSmellsName, setCsvSmellsName] = useState(state.csvSmells !== null ? state.csvSmells.name : "File not selected");
     const [csvFlakyName, setCsvFlakyName] = useState(state.csvFlaky !== null ? state.csvFlaky.name : "File not selected");
+    const [waitingScreenOn, setWaitingScreenOn] = useState(false);
 
     const loadSmellCsv = (event) => {
       if (event.target.files.length) {
@@ -30,8 +32,32 @@
         const smellsPath = "./src/csv/" + csvSmellsName
         const flakyPath = "./src/csv/" + csvFlakyName
         ipcRenderer.send('run-script', ["get_test_smells.py", smellsPath, flakyPath])
-      }
+        setWaitingScreenOn(true);
+        setTimeout(function(){
+          setWaitingScreenOn(false);
+        }.bind(this),5000);
+        }
     };
+
+    const renderWaitingScreen = () => {
+      return(
+        <div className = "analysis_waiting_screen">
+          <div className="analysis_screen_flex_container">
+            <div className="analysis_text">
+              Analyzing Projects
+            </div>
+          </div>
+          <div className="analysis_screen_flex_container">
+            <div className="analysis_text_small">
+              The results will be saved as sfa_results.csv in the csv folder
+            </div>
+          </div>
+          <div className="home_screen_flex_container">
+            <img className = "home_screen_icon" alt = "Loading" src = {loadingGif}/>
+          </div>
+        </div>
+      )
+    }
 
     return (
       <div className="analysis_screen">
@@ -126,6 +152,7 @@
             </div>
           </div>
         </div>
+        {waitingScreenOn && renderWaitingScreen()}
       </div>
     );
   }
