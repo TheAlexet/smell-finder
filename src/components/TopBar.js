@@ -41,6 +41,13 @@ const TopBar = () => {
               Analysis
             </div>
           </div>
+
+          <div className = {screen === "results" ? "top_bar_button_pressed" : "top_bar_button"}
+               onClick={() => changeScreen("results")}>
+            <div className = "top_bar_button_text">
+              Results
+            </div>
+          </div>
         </div>
       </div>
     </div>

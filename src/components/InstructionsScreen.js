@@ -2,7 +2,6 @@ import './InstructionsScreen.css';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import loadingGif from '../assets/loading.gif';
-import Papa from 'papaparse';
 const { ipcRenderer } = window.require('electron');
 
 const InstructionsScreen = () => {
@@ -18,33 +17,6 @@ const InstructionsScreen = () => {
       setCsvFlakyDownloadedName(event.target.files[0].name)
     }
   };
-
-  /*const parseFlakyDownloaded = () => {
-    if (state.csvFlakyDownloaded !== null) {
-      let parsedValues = []
-      let parsedRows = ["Project name", "Test method name" , "Is flaky"]
-
-      Papa.parse(state.csvFlakyDownloaded, {
-        header: true,
-        skipEmptyLines: true,
-        complete: function (results) {
-          results.data.map((element) => {
-            parsedValues.push([element.Project, element.Test, element.IsFlaky])
-          });
-          console.log(parsedValues)
-          const parsedCsv = Papa.unparse(parsedValues)
-          console.log(parsedCsv)
-          const blob = new Blob([parsedCsv]);
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob, { type: 'text/plain' });
-          a.download = 'test_results_parsed';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        },
-      })
-    }
-  };*/
 
   const parseFlakyDownloaded = () => {
     if (state.csvFlakyDownloaded !== null) {
