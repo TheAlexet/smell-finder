@@ -1,6 +1,6 @@
   import './ResultsScreen.css';
   import { useSelector, useDispatch } from 'react-redux';
-  import React, { useState } from 'react';
+  import React, { useState, useEffect } from 'react';
 
   const ResultsScreen = () => {
 
@@ -11,6 +11,10 @@
     const [csvResultsName, setCsvResultsName] = useState(csvResults !== null ? csvResults.name : "File not selected");
     const [isHiding, setIsHiding] = useState(false);
     const fileReader = new FileReader();
+
+    useEffect(() => {
+      //setTableResults([...state.tableResults])
+    });
 
     const loadResultsCsv = (event) => {
       if (event.target.files.length) {
@@ -28,6 +32,7 @@
 
     const backButton = () => {
       dispatch({type: "main/updateCsvResults", payload: null})
+      dispatch({type: "main/updateTableResults", payload: []})
       setCsvResultsName("File not selected")
       setIsHiding(false)
     };
@@ -35,11 +40,10 @@
     const hideButton = () => {
       if(!isHiding)
       {
-        let hiddenTableResults = [...tableResults]
         let smellsFound = [false, false, false, false, false, false, false, false, false, false, false,
                            false, false, false, false, false, false, false, false, false, false]
         const smellsName = ["Assertion Roulette", "Conditional Test Logic", "Constructor Initialization", "Default Test", "Dependent Test", "Duplicate Assert", "Eager Test", "EmptyTest", "Exception Catching Throwing", "General Fixture", "IgnoredTest",
-                            "Lazy Test", "Magic Number Test", "Mystery Guest", "Print Statement", "Redundant Assertion", "Resource Optimism", "Sensitive Equality", "Sleepy Test", "Unknown Test", "Verbose Test "]
+                            "Lazy Test", "Magic Number Test", "Mystery Guest", "Print Statement", "Redundant Assertion", "Resource Optimism", "Sensitive Equality", "Sleepy Test", "Unknown Test", "Verbose Test"]
         tableResults.map((row) => {
           for(var i = 3; i < Object.values(row).length; i++)
           {
@@ -47,13 +51,13 @@
           }
         })
         
-        for(var i = 0; i < hiddenTableResults.length; i++)
+        for(var i = 0; i < tableResults.length; i++)
         {
           for(var j = 3; j < 24; j++)
           {
             if(!smellsFound[j - 3])
             {
-              delete hiddenTableResults[i][smellsName[j - 3]]
+              delete tableResults[i][smellsName[j - 3]]
             }
           }
         }
@@ -66,11 +70,13 @@
     };
 
     const parseResults = (string) => {
-      const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
-      const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
-
+      let csvHeader = string.slice(0, string.indexOf("\n")).split(",");
+      csvHeader[csvHeader.length - 1] = csvHeader[csvHeader.length - 1].replace(/(\r\n|\n|\r)/gm, "")
+      let csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
+      csvRows.pop()
       const parsedResults = csvRows.map(i => {
         const values = i.split(",");
+        values[values.length - 1] = values[values.length - 1].replace(/(\r\n|\n|\r)/gm, "")
         const obj = csvHeader.reduce((object, header, index) => {
           if(index < 2) {
             object[header] = values[index];
@@ -83,9 +89,6 @@
         }, {});
         return obj;
       });
-      //console.log(parsedResults[parsedResults.length - 1])
-      //let newParsedResults = parsedResults.slice()
-      //parsedResults = parsedResults.pop()
       dispatch({type: "main/updateTableResults", payload: parsedResults})
       setTableResults(parsedResults)
     };
@@ -166,8 +169,8 @@
             <table>
               <thead>
                 <tr key={"header"} className="results_screen_table_row">
-                  {headerKeys.map((key) => (
-                    <th className="results_screen_table_header">
+                  {headerKeys.map((key, index) => (
+                    <th key = {"key_" + index} className="results_screen_table_header">
                       {key}
                     </th>
                   ))}
@@ -177,8 +180,8 @@
               <tbody>
                 {tableResults.map((item) => (
                   <tr key={item.id} className="results_screen_table_row">
-                    {Object.values(item).map((val) => (
-                      <td className={val === 1 ? "results_screen_table_text_green" : "results_screen_table_text"}>
+                    {Object.values(item).map((val, index) => (
+                      <td key = {"val_" + index} className={val === 1 ? "results_screen_table_text_green" : "results_screen_table_text"}>
                         {val}
                       </td>
                     ))}
