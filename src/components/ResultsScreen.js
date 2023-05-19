@@ -1,6 +1,6 @@
   import './ResultsScreen.css';
   import { useSelector, useDispatch } from 'react-redux';
-  import React, { useState, useEffect } from 'react';
+  import React, { useState } from 'react';
 
   const ResultsScreen = () => {
 
@@ -9,12 +9,8 @@
     const csvResults = state.csvResults
     const [tableResults, setTableResults] = useState(state.tableResults)
     const [csvResultsName, setCsvResultsName] = useState(csvResults !== null ? csvResults.name : "File not selected");
-    const [isHiding, setIsHiding] = useState(false);
+    const isHiding = state.hiddenTable
     const fileReader = new FileReader();
-
-    useEffect(() => {
-      //setTableResults([...state.tableResults])
-    });
 
     const loadResultsCsv = (event) => {
       if (event.target.files.length) {
@@ -34,7 +30,7 @@
       dispatch({type: "main/updateCsvResults", payload: null})
       dispatch({type: "main/updateTableResults", payload: []})
       setCsvResultsName("File not selected")
-      setIsHiding(false)
+      dispatch({type: "main/updateHiddenTable", payload: false})
     };
 
     const hideButton = () => {
@@ -61,7 +57,7 @@
             }
           }
         }
-        setIsHiding(true)
+        dispatch({type: "main/updateHiddenTable", payload: true})
       }
       else
       {

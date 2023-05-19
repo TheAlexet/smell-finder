@@ -4,7 +4,8 @@ const initialState = {
     csvFlaky: null,
     csvFlakyDownloaded: null,
     csvResults: null,
-    tableResults: []
+    tableResults: [],
+    hiddenTable: false
 }
 
 const mainReducer = (state = initialState, action) => {
@@ -27,6 +28,9 @@ const mainReducer = (state = initialState, action) => {
 
         case 'main/updateTableResults':
             return {...state, tableResults: action.payload}
+
+        case 'main/updateHiddenTable':
+            return {...state, hiddenTable: action.payload}
 
         default:
             return state

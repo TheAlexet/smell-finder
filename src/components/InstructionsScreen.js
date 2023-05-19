@@ -2,7 +2,7 @@ import './InstructionsScreen.css';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import loadingGif from '../assets/loading.gif';
-//const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window.require('electron');
 
 const InstructionsScreen = () => {
 
@@ -21,12 +21,12 @@ const InstructionsScreen = () => {
   const parseFlakyDownloaded = () => {
     if (state.csvFlakyDownloaded !== null) {
       const csvPath = "./src/csv/" + csvFlakyDownloadedName
-      //ipcRenderer.send('run-script', ["get_test_flakiness.py", csvPath])
+      ipcRenderer.send('run-script', ["get_test_flakiness.py", csvPath])
     }
   };
 
   const runJNose = async() => {
-    //ipcRenderer.send('run-script', ["run_jnose.py"])
+    ipcRenderer.send('run-script', ["run_jnose.py"])
     setWaitingScreenOn(true);
     setTimeout(function(){
       setWaitingScreenOn(false);
