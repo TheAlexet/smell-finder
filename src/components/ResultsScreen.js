@@ -7,19 +7,21 @@
     const state = useSelector(state => state.main)
     const dispatch = useDispatch()
     const csvResults = state.csvResults
-    const tableResults = state.tableResults
+    const [tableResults, setTableResults] = useState(state.tableResults)
     const [csvResultsName, setCsvResultsName] = useState(csvResults !== null ? csvResults.name : "File not selected");
+    const [isHiding, setIsHiding] = useState(false);
     const fileReader = new FileReader();
 
     const loadResultsCsv = (event) => {
       if (event.target.files.length) {
         dispatch({type: "main/updateCsvResults", payload: event.target.files[0]})
         setCsvResultsName(event.target.files[0].name)
+
         fileReader.onload = function (event) {
           const text = event.target.result;
           parseResults(text)
         };
-  
+
         fileReader.readAsText(event.target.files[0]);
       }
     };
@@ -27,6 +29,40 @@
     const backButton = () => {
       dispatch({type: "main/updateCsvResults", payload: null})
       setCsvResultsName("File not selected")
+      setIsHiding(false)
+    };
+
+    const hideButton = () => {
+      if(!isHiding)
+      {
+        let hiddenTableResults = [...tableResults]
+        let smellsFound = [false, false, false, false, false, false, false, false, false, false, false,
+                           false, false, false, false, false, false, false, false, false, false]
+        const smellsName = ["Assertion Roulette", "Conditional Test Logic", "Constructor Initialization", "Default Test", "Dependent Test", "Duplicate Assert", "Eager Test", "EmptyTest", "Exception Catching Throwing", "General Fixture", "IgnoredTest",
+                            "Lazy Test", "Magic Number Test", "Mystery Guest", "Print Statement", "Redundant Assertion", "Resource Optimism", "Sensitive Equality", "Sleepy Test", "Unknown Test", "Verbose Test "]
+        tableResults.map((row) => {
+          for(var i = 3; i < Object.values(row).length; i++)
+          {
+            if(Object.values(row)[i] === 1 && smellsFound[i - 3] === false) smellsFound[i - 3] = true
+          }
+        })
+        
+        for(var i = 0; i < hiddenTableResults.length; i++)
+        {
+          for(var j = 3; j < 24; j++)
+          {
+            if(!smellsFound[j - 3])
+            {
+              delete hiddenTableResults[i][smellsName[j - 3]]
+            }
+          }
+        }
+        setIsHiding(true)
+      }
+      else
+      {
+
+      }
     };
 
     const parseResults = (string) => {
@@ -36,12 +72,22 @@
       const parsedResults = csvRows.map(i => {
         const values = i.split(",");
         const obj = csvHeader.reduce((object, header, index) => {
-          object[header] = values[index];
+          if(index < 2) {
+            object[header] = values[index];
+          }
+          else
+          {
+            object[header] = Number(values[index]);
+          }
           return object;
         }, {});
         return obj;
       });
+      //console.log(parsedResults[parsedResults.length - 1])
+      //let newParsedResults = parsedResults.slice()
+      //parsedResults = parsedResults.pop()
       dispatch({type: "main/updateTableResults", payload: parsedResults})
+      setTableResults(parsedResults)
     };
 
     const renderLoadCsv = () => {
@@ -100,6 +146,14 @@
             </div>
 
             <div className="results_screen_right_container">
+              <div className={!isHiding ? "results_screen_back_button" : "results_screen_pressed_button"} onClick = {() => hideButton()}>
+                <div className="results_screen_text_small_button">
+                  Hide columns without smells
+                </div>
+              </div>
+            </div>
+
+            <div className="results_screen_right_container">
               <div className="results_screen_back_button" onClick = {() => backButton()}>
                 <div className="results_screen_text_normal">
                   Back
@@ -124,7 +178,7 @@
                 {tableResults.map((item) => (
                   <tr key={item.id} className="results_screen_table_row">
                     {Object.values(item).map((val) => (
-                      <td className="results_screen_table_text">
+                      <td className={val === 1 ? "results_screen_table_text_green" : "results_screen_table_text"}>
                         {val}
                       </td>
                     ))}

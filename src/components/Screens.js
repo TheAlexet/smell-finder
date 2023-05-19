@@ -4,6 +4,7 @@ import HomeScreen from './HomeScreen.js'
 import InstructionsScreen from './InstructionsScreen.js'
 import AnalysisScreen from './AnalysisScreen.js'
 import ResultsScreen from './ResultsScreen.js'
+import StatsScreen from './StatsScreen.js'
 
 const Screens = () => {
 
@@ -16,6 +17,7 @@ const Screens = () => {
       {screen === "instructions" && <InstructionsScreen/>}
       {screen === "analysis" && <AnalysisScreen/>}
       {screen === "results" && <ResultsScreen/>}
+      {screen === "stats" && <StatsScreen/>}
     </div>
   );
 }

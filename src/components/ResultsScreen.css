@@ -125,7 +125,7 @@
   left: 5%;
   top: 5%;
   display: grid;
-  grid-template-rows: 10% 90%;
+  grid-template-rows: 12% 88%;
 }
 
 .results_screen_table_top {
@@ -134,13 +134,13 @@
   width: 100%;
   top: 5%;
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 60% 20% 20%;
 }
 
 .results_screen_back_button {
   position: relative;
   height: 100%;
-  width: 60%;
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -186,6 +186,50 @@
   font-family:'Lucida Sans';
   color: #ffffff;
 
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+.results_screen_table_text_green {
+  font-size:calc(5px + 1vw);
+  font-family:'Lucida Sans';
+  color: #ffffff;
+  background-color: #24384b;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+.results_screen_pressed_button {
+  position: relative;
+  height: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size:calc(5px + 1vw);
+  font-family:'Lucida Sans';
+  color: #ffffff;
+  position: absolute;
+  background-color: #5cadeb;
+  border-radius: 10px;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+.results_screen_text_small_button {
+  font-size:calc(5px + 1vw);
+  font-family:'Lucida Sans';
+  color: #ffffff;
+  position: absolute;
+  height: 90%;
+  width: 90%;
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */

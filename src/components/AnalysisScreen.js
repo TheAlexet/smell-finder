@@ -2,7 +2,7 @@
   import { useSelector, useDispatch } from 'react-redux';
   import React, { useState } from 'react';
   import loadingGif from '../assets/loading.gif';
-  const { ipcRenderer } = window.require('electron');
+  //const { ipcRenderer } = window.require('electron');
   
   const AnalysisScreen = () => {
 
@@ -31,7 +31,7 @@
       {
         const smellsPath = "./src/csv/" + csvSmellsName
         const flakyPath = "./src/csv/" + csvFlakyName
-        ipcRenderer.send('run-script', ["get_test_smells.py", smellsPath, flakyPath])
+        //ipcRenderer.send('run-script', ["get_test_smells.py", smellsPath, flakyPath])
         setWaitingScreenOn(true);
         setTimeout(function(){
           setWaitingScreenOn(false);

@@ -18,7 +18,6 @@ const TopBar = () => {
         <div className = "top_bar_logo_container">
           <img className = "top_bar_logo" alt = "Logo Icon" src = {logo}/>
         </div>
-        
 
         <div className = "top_bar_menu">
           <div className = {screen === "home" ? "top_bar_button_pressed" : "top_bar_button"}
@@ -46,6 +45,13 @@ const TopBar = () => {
                onClick={() => changeScreen("results")}>
             <div className = "top_bar_button_text">
               Results
+            </div>
+          </div>
+
+          <div className = {screen === "stats" ? "top_bar_button_pressed" : "top_bar_button"}
+               onClick={() => changeScreen("stats")}>
+            <div className = "top_bar_button_text">
+              Stats
             </div>
           </div>
         </div>

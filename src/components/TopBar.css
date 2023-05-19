@@ -9,7 +9,7 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 8% 92%;
+  grid-template-columns: 8% 90%;
 }
 
 .top_bar_logo_container {
