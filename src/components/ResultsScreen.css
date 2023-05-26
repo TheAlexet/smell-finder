@@ -36,7 +36,7 @@
   cursor: pointer;
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   background-color:#2a99ed;
   border-radius: 10px;
@@ -85,7 +85,7 @@
 .results_screen_text {
   font-size:calc(10px + 2vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
 
   -webkit-user-select: none; /* Safari */        
@@ -97,7 +97,7 @@
 .results_screen_text_small {
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
 
   -webkit-user-select: none; /* Safari */        
@@ -109,7 +109,7 @@
 .results_screen_text_normal {
   font-size:calc(10px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
 
   -webkit-user-select: none; /* Safari */        
@@ -147,7 +147,7 @@
   cursor: pointer;
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   background-color:#2a99ed;
   border-radius: 10px;
@@ -163,11 +163,11 @@
   width: 100%;
   top: 5%;
   overflow: scroll;
-  background-color: #24384b;
+  background-color: #000000;
 }
 
 .results_screen_table_row {
-  background-color: #15202b;
+  background-color: #f0f0f0;
 }
 
 .results_screen_table_header {
@@ -184,7 +184,7 @@
 .results_screen_table_text {
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
 
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
@@ -195,8 +195,8 @@
 .results_screen_table_text_green {
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
-  background-color: #24384b;
+  color: #000000;
+  background-color: #ff8b8b;
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
@@ -210,12 +210,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
-  background-color: #5cadeb;
+  background-color: #a9d8ff;
   border-radius: 10px;
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
@@ -226,10 +225,10 @@
 .results_screen_text_small_button {
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
-  height: 90%;
   width: 90%;
+  left: 5%;
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */

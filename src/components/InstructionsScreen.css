@@ -116,7 +116,7 @@
 .instructions_screen_title {
   font-size:calc(10px + 2.5vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
 
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
@@ -127,7 +127,7 @@
 .instructions_screen_text {
   font-size:calc(10px + 1.2vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   line-height: 1.6;
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
@@ -147,7 +147,7 @@
   cursor: pointer;
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   background-color:#2a99ed;
   border-radius: 10px;
@@ -178,7 +178,7 @@
   cursor: pointer;
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   background-color:#2a99ed;
   border-radius: 10px;
@@ -201,7 +201,7 @@
   cursor: pointer;
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   background-color:#2a99ed;
   border-radius: 10px;
@@ -236,7 +236,7 @@
   cursor: pointer;
   font-size:calc(5px + 1vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   background-color:#2a99ed;
   border-radius: 10px;
@@ -253,7 +253,7 @@
   width: 30%;
   top: 20%;
   left: 35%;
-  background-color: #15202b;
+  background-color: #f0f0f0;
   border-radius: 10px;
   display: grid;
   grid-template-rows: 30% 70%;

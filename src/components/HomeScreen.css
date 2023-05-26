@@ -82,7 +82,7 @@
 .home_screen_text {
   font-size:calc(10px + 1.8vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
 
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
@@ -93,7 +93,7 @@
 .home_screen_text_small {
   font-size:calc(10px + 1.5vw);
   font-family:'Lucida Sans';
-  color: #ffffff;
+  color: #000000;
 
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
