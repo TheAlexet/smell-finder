@@ -75,6 +75,18 @@
   text-align: center;
 }
 
+.stats_screen_left_container {
+  position: relative;
+  height: 90%;
+  width: 90%;
+  top: 5%;
+  left: 5%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+}
+
 .stats_screen_title {
   font-size:calc(10px + 2vw);
   font-family:'Lucida Sans';
@@ -108,6 +120,17 @@
   user-select: none; /* Standard */
 }
 
+.stats_screen_text_list {
+  font-size:calc(5px + 1vw);
+  font-family:'Lucida Sans';
+  color: #000000;
+  overflow-x: hidden;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
 .stats_screen_chart_container {
   position: relative;
   height: 90%;
@@ -117,4 +140,80 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.stats_screen_methods_screen {
+  position: fixed;
+  height: 70%;
+  width: 45%;
+  top: 15%;
+  left: 27.5%;
+  display: grid;
+  grid-template-rows: 10% 10% 65% 15%;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #2a99ed;
+  background-color: #f0f0f0;
+}
+
+.stats_screen_methods_title {
+  position: relative;
+  height: 90%;
+  width: 90%;
+  top: 5%;
+  left: 5%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.stats_screen_methods_list {
+  position: relative;
+  height: 100%;
+  width: 90%;
+  left: 5%;
+  overflow-y: scroll;
+}
+
+.stats_screen_methods_list_element_0 {
+  position: relative;
+  height: 10%;
+  width: 95%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+}
+
+.stats_screen_methods_list_element {
+  position: relative;
+  height: 10%;
+  width: 95%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  border-style: solid;
+  border-color: #000000;
+  border-top: 0;
+  border-width: 1px;
+}
+
+.stats_screen_close_button {
+  position: relative;
+  height: 70%;
+  width: 35%;
+  top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size:calc(5px + 1vw);
+  font-family:'Lucida Sans';
+  color: #000000;
+  position: absolute;
+  background-color:#2a99ed;
+  border-radius: 10px;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }

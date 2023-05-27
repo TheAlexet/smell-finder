@@ -1,8 +1,9 @@
+import { useRef } from 'react';
 import './StatsScreen.css';
 import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import { Pie, getElementsAtEvent } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -18,6 +19,9 @@ const StatsScreen = () => {
   const [testSmells, setTestSmells] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
   const [totalTestSmellsInFlakyMethods, setTotalTestSmellsInFlakyMethods] = useState(0)
   const [testSmellsInFlakyMethods, setTestSmellsInFlakyMethods] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+  const [methodsScreenOpen, setMethodsScreenOpen] = useState(false)
+  const [methodsScreenTitle, setMethodsScreenTitle] = useState("")
+  const [methodsScreenMethods, setMethodsScreenMethods] = useState([])
 
   useEffect(() => {
     if(tableResults.length > 0)
@@ -350,6 +354,206 @@ const StatsScreen = () => {
     return data
   }
 
+  const chart1Ref = useRef();
+  const chart1Click = (event) => {
+    if(getElementsAtEvent(chart1Ref.current, event).length > 0)
+    {
+      const dataPoint = getElementsAtEvent(chart1Ref.current, event)[0].index
+      if(dataPoint === 0)
+      {
+        setMethodsScreenOpen(true)
+        setMethodsScreenTitle("Methods with test smells")
+        let newMethods = []
+        tableResults.map((method) => {
+          let isSmelly = false
+          for(var i = 3; i < Object.values(method).length; i++)
+          {
+            if(Number(Object.values(method)[i]) === 1 && !isSmelly)
+            {
+                isSmelly = true
+            }
+          }
+          if(isSmelly)
+          {
+            newMethods.push([Object.values(method)[0], Object.values(method)[1]])
+            isSmelly = false
+          }
+        })
+        setMethodsScreenMethods(newMethods)
+      }
+    }
+  }
+
+  const chart2Ref = useRef();
+  const chart2Click = (event) => {
+    if(getElementsAtEvent(chart2Ref.current, event).length > 0)
+    {
+      const dataPoint = getElementsAtEvent(chart2Ref.current, event)[0].index
+      if(dataPoint === 0)
+      {
+        setMethodsScreenOpen(true)
+        setMethodsScreenTitle("Methods with flaky tests")
+        let newMethods = []
+        tableResults.map((method) => {
+          if(Number(Object.values(method)[2]) === 1)
+          {
+            newMethods.push([Object.values(method)[0], Object.values(method)[1]])
+          }
+        })
+        setMethodsScreenMethods(newMethods)
+      }
+    }
+  }
+
+  const chart3Ref = useRef();
+  const chart3Click = (event) => {
+    if(getElementsAtEvent(chart3Ref.current, event).length > 0)
+    {
+      const dataPoint = getElementsAtEvent(chart3Ref.current, event)[0].index
+      if(dataPoint === 0)
+      {
+        setMethodsScreenOpen(true)
+        setMethodsScreenTitle("Flaky methods with test smells")
+        let newMethods = []
+        tableResults.map((method) => {
+          let isSmelly = false
+          for(var i = 3; i < Object.values(method).length; i++)
+          {
+            if(Number(Object.values(method)[i]) === 1 && !isSmelly && Number(Object.values(method)[2]) === 1 )
+            {
+                isSmelly = true
+            }
+          }
+          if(isSmelly)
+          {
+            newMethods.push([Object.values(method)[0], Object.values(method)[1]])
+            isSmelly = false
+          }
+        })
+        setMethodsScreenMethods(newMethods)
+      }
+    }
+  }
+
+  const chart4Ref = useRef();
+  const chart4Click = (event) => {
+    if(getElementsAtEvent(chart4Ref.current, event).length > 0)
+    {
+      const dataPoint = getElementsAtEvent(chart4Ref.current, event)[0].index
+      if(dataPoint === 0)
+      {
+        setMethodsScreenOpen(true)
+        setMethodsScreenTitle("Flaky methods with test smells")
+        let newMethods = []
+        tableResults.map((method) => {
+          let isSmelly = false
+          for(var i = 3; i < Object.values(method).length; i++)
+          {
+            if(Number(Object.values(method)[i]) === 1 && !isSmelly && Number(Object.values(method)[2]) === 1 )
+            {
+                isSmelly = true
+            }
+          }
+          if(isSmelly)
+          {
+            newMethods.push([Object.values(method)[0], Object.values(method)[1]])
+            isSmelly = false
+          }
+        })
+        setMethodsScreenMethods(newMethods)
+      }
+    }
+  }
+
+  const chart5Ref = useRef();
+  const chart5Click = (event) => {
+    let smells = ["Assertion Roulette", "Conditional Test Logic", "Constructor Initialization", "Default Test", "Dependent Test", "Duplicate Assert", "Eager Test", "EmptyTest", "Exception Catching Throwing", "General Fixture", "IgnoredTest",
+       "Lazy Test", "Magic Number Test", "Mystery Guest", "Print Statement", "Redundant Assertion", "Resource Optimism", "Sensitive Equality", "Sleepy Test", "Unknown Test", "Verbose Test"]
+    if(getElementsAtEvent(chart5Ref.current, event).length > 0)
+    {
+      const dataPoint = getElementsAtEvent(chart5Ref.current, event)[0].index
+      setMethodsScreenOpen(true)
+      setMethodsScreenTitle("Methods with " + smells[dataPoint])
+      let newMethods = []
+      tableResults.map((method) => {
+        if(Number(Object.values(method)[dataPoint + 3]) === 1)
+        {
+          newMethods.push([Object.values(method)[0], Object.values(method)[1]])
+        }
+      })
+      setMethodsScreenMethods(newMethods)
+    }
+  }
+
+  const chart6Ref = useRef();
+  const chart6Click = (event) => {
+    let smells = ["Assertion Roulette", "Conditional Test Logic", "Constructor Initialization", "Default Test", "Dependent Test", "Duplicate Assert", "Eager Test", "EmptyTest", "Exception Catching Throwing", "General Fixture", "IgnoredTest",
+       "Lazy Test", "Magic Number Test", "Mystery Guest", "Print Statement", "Redundant Assertion", "Resource Optimism", "Sensitive Equality", "Sleepy Test", "Unknown Test", "Verbose Test"]
+    if(getElementsAtEvent(chart6Ref.current, event).length > 0)
+    {
+      const dataPoint = getElementsAtEvent(chart6Ref.current, event)[0].index
+      setMethodsScreenOpen(true)
+      setMethodsScreenTitle("Flaky methods with " + smells[dataPoint])
+      let newMethods = []
+      tableResults.map((method) => {
+        if(Number(Object.values(method)[dataPoint + 3]) === 1 && Number(Object.values(method)[2]) === 1)
+        {
+          newMethods.push([Object.values(method)[0], Object.values(method)[1]])
+        }
+      })
+      setMethodsScreenMethods(newMethods)
+    }
+  }
+
+  const renderMethodsScreen = () => {
+    return(
+      <div className = "stats_screen_methods_screen">
+        <div className="stats_screen_flex_container">
+          <div className="stats_screen_text">
+            {methodsScreenTitle}
+          </div>
+        </div>
+        <div className="stats_screen_methods_title">
+          <div className="stats_screen_left_container">
+            <div className="stats_screen_text">
+              Project
+            </div>
+          </div>
+          <div className="stats_screen_left_container">
+            <div className="stats_screen_text">
+              Method
+            </div>
+          </div>
+        </div>
+        <div className="stats_screen_methods_list">
+          {methodsScreenMethods.map((method, i) => {
+            return(
+              <div className={i === 0 ? "stats_screen_methods_list_element_0" : "stats_screen_methods_list_element"}>
+                <div className="stats_screen_left_container">
+                  <div className="stats_screen_text_list">
+                    {method[0]}
+                  </div>
+                </div>
+                <div className="stats_screen_left_container">
+                  <div className="stats_screen_text_list">
+                    {method[1]}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+        <div className="stats_screen_flex_container">
+          <div className="stats_screen_close_button" onClick = {() => setMethodsScreenOpen(false)}>
+            <div className="stats_screen_text">
+              Close
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const renderScreen0 = () => {
     return(
       <div className="stats_screen_box_0">
@@ -392,7 +596,9 @@ const StatsScreen = () => {
             <Pie data={calculateSmellyMethodsChart()}
                 width={30}
                 height={30}
-                options={{ maintainAspectRatio: false }}/>
+                options={{ maintainAspectRatio: false }}
+                onClick = {chart1Click}
+                ref = {chart1Ref}/>
           </div>
         </div>
 
@@ -413,7 +619,9 @@ const StatsScreen = () => {
             <Pie data={calculateFlakyMethodsChart()}
                 width={30}
                 height={30}
-                options={{ maintainAspectRatio: false }}/>
+                options={{ maintainAspectRatio: false }}
+                onClick = {chart2Click}
+                ref = {chart2Ref}/>
           </div>
         </div>
       </div>
@@ -440,7 +648,10 @@ const StatsScreen = () => {
             <Pie data={calculateSmellyFlakyMethodsGlobalChart()}
                 width={30}
                 height={30}
-                options={{ maintainAspectRatio: false}}/>
+                options={{ maintainAspectRatio: false}}
+                onClick = {chart3Click}
+                ref = {chart3Ref}
+                />
           </div>
         </div>
 
@@ -461,7 +672,9 @@ const StatsScreen = () => {
             <Pie data={calculateSmellyFlakyMethodsChart()}
                 width={30}
                 height={30}
-                options={{ maintainAspectRatio: false}}/>
+                options={{ maintainAspectRatio: false}}
+                onClick = {chart4Click}
+                ref = {chart4Ref}/>
           </div>
         </div>
       </div>
@@ -488,7 +701,9 @@ const StatsScreen = () => {
             <Pie data={calculateTestSmellsChart()}
                 width={30}
                 height={30}
-                options={{ maintainAspectRatio: false, plugins: {legend: {display: false}}}}/>
+                options={{ maintainAspectRatio: false, plugins: {legend: {display: false}}}}
+                onClick = {chart5Click}
+                ref = {chart5Ref}/>
           </div>
         </div>
 
@@ -509,7 +724,9 @@ const StatsScreen = () => {
             <Pie data={calculateTestSmellsInFlakyMethodsChart()}
                 width={30}
                 height={30}
-                options={{ maintainAspectRatio: false, plugins: {legend: {display: false}}}}/>
+                options={{ maintainAspectRatio: false, plugins: {legend: {display: false}}}}
+                onClick = {chart6Click}
+                ref = {chart6Ref}/>
           </div>
         </div>
       </div>
@@ -520,6 +737,7 @@ const StatsScreen = () => {
     <div className="stats_screen">
       {tableResults.length === 0 && renderScreen0()}
       {tableResults.length > 0 && renderScreens()}
+      {methodsScreenOpen && renderMethodsScreen()}
     </div>
   );
 }
