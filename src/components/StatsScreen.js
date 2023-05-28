@@ -92,7 +92,7 @@ const StatsScreen = () => {
   }
 
   const calculateTestSmells = () => {
-    let newTestSmells = testSmells
+    let newTestSmells = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     tableResults.map((method) => {
       for(var i = 3; i < Object.values(method).length; i++)
       {
@@ -117,7 +117,7 @@ const StatsScreen = () => {
   }
 
   const calculateTestSmellsInFlakyMethods = () => {
-    let newTestSmellsInFlakyMethods = testSmellsInFlakyMethods
+    let newTestSmellsInFlakyMethods = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     tableResults.map((method) => {
       for(var i = 3; i < Object.values(method).length; i++)
       {
