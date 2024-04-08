@@ -8,6 +8,6 @@ Smell Flaky Analyzer is a program developed using React that incorporates other 
 
 ## Clone
 You can clone the repository to your local machine with:
-    ```bash
+    ```
     git clone https://github.com/TheAlexet/smell-flaky-analyzer.git
     ```
